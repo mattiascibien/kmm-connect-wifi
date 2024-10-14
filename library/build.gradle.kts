@@ -71,7 +71,7 @@ mavenPublishing {
 
     pom {
         name.set("Kotlin Multiplatform Connect WiFi")
-        description.set("A description of what my library does.")
+        description.set("Library for connecting to WiFi network in a simple and cross-platform way")
         inceptionYear.set("2024")
         url.set("https://github.com/mattiascibien/kmm-connect-wifi/")
         licenses {
