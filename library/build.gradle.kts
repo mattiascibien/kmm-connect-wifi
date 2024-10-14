@@ -66,4 +66,32 @@ mavenPublishing {
             androidVariantsToPublish = listOf("debug", "release")
         )
     )
+
+    coordinates("net.mattiascibien.kmm-connect-wifi", "kmm-connect-wifi", "0.0.1-SNAPSHOT")
+
+    pom {
+        name.set("Kotlin Multiplatform Connect WiFi")
+        description.set("A description of what my library does.")
+        inceptionYear.set("2024")
+        url.set("https://github.com/mattiascibien/kmm-connect-wifi/")
+        licenses {
+            license {
+                name.set("The Apache License, Version 2.0")
+                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+        developers {
+            developer {
+                id.set("mattiascibien")
+                name.set("Mattias Cibien")
+                url.set("https://github.com/mattiascibien/")
+            }
+        }
+        scm {
+            url.set("https://github.com/mattiascibien/kmm-connect-wifi/")
+            connection.set("scm:git:git://github.com/mattiascibien/kmm-connect-wifi.git")
+            developerConnection.set("scm:git:ssh://git@github.com/mattiascibien/kmm-connect-wifi.git")
+        }
+    }
 }
