@@ -1,0 +1,1 @@
+expect suspend fun connectToWifi(ssid: String, type: WiFiType, password: String?) : Boolean
