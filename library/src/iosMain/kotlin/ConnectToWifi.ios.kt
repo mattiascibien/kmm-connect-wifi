@@ -1,3 +1,5 @@
+package net.mattiascibien.connectwifi
+
 import platform.NetworkExtension.NEHotspotConfiguration
 import platform.NetworkExtension.NEHotspotConfigurationManager
 import platform.NetworkExtension.NEHotspotNetwork

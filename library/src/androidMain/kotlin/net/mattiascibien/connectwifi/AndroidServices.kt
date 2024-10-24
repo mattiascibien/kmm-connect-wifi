@@ -1,22 +1,27 @@
+package net.mattiascibien.connectwifi
+
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import androidx.startup.Initializer
 
-class AndroidServices(val wifiManager: WifiManager, val connectivityManager: ConnectivityManager) {
-    companion object {
-        lateinit var services: AndroidServices
+interface AndroidServices
 
-        fun initialize(context: Context) : AndroidServices {
-            services = AndroidServices(
+internal class AndroidServicesImpl(val wifiManager: WifiManager, val connectivityManager: ConnectivityManager) :
+    AndroidServices {
+    companion object {
+        internal lateinit var services: AndroidServicesImpl
+
+        fun initialize(context: Context) : AndroidServicesImpl {
+            services = AndroidServicesImpl(
                 context.getSystemService(Context.WIFI_SERVICE) as WifiManager,
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             )
             return services
         }
 
-        fun getInstance() : AndroidServices {
-            if (!::services.isInitialized) {
+        fun getInstance() : AndroidServicesImpl {
+            if (!Companion::services.isInitialized) {
                 throw Exception("AndroidServices not initialized. You might forgot to call initialize(ctx: Context) ")
             }
 
@@ -25,9 +30,12 @@ class AndroidServices(val wifiManager: WifiManager, val connectivityManager: Con
     }
 }
 
+/**
+ * Initializes the services required by the library using AndroidX App Startup
+ */
 class AndroidServicesInitializer : Initializer<AndroidServices> {
     override fun create(context: Context): AndroidServices {
-        return AndroidServices.initialize(context)
+        return AndroidServicesImpl.initialize(context)
     }
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> {

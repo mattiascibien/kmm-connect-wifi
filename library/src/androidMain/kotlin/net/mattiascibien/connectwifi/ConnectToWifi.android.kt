@@ -1,4 +1,5 @@
-import android.annotation.SuppressLint
+package net.mattiascibien.connectwifi
+
 import android.annotation.TargetApi
 import android.net.ConnectivityManager
 import android.net.Network
@@ -12,12 +13,18 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-@SuppressLint("MissingPermission")
+/**
+ * Connects to the specified Wi-Fi Network
+ *
+ * @param ssid The network SSID
+ * @param type The network type
+ * @param password A password (optional for unsecured networks)
+ */
 @TargetApi(Build.VERSION_CODES.Q)
 actual suspend fun connectToWifi(ssid: String, type: WiFiType, password: String?) : Boolean {
     return suspendCoroutine { continuation ->
-        val wifiManager = AndroidServices.services.wifiManager
-        val connectivityManager = AndroidServices.services.connectivityManager
+        val wifiManager = AndroidServicesImpl.getInstance().wifiManager
+        val connectivityManager = AndroidServicesImpl.getInstance().connectivityManager
 
         val suggestionBuilder = WifiNetworkSuggestion.Builder()
             .setSsid(ssid)
